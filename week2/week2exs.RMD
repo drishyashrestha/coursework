@@ -1,0 +1,169 @@
+---
+title: "Week 2 exercises "
+date: 2025-05-06
+output: html_document
+---
+```{r }
+library(tidyverse)
+library(lubridate)
+
+magnets <- read.csv('magnets.csv')
+str(magnets)
+summary(magnets)
+```
+
+Day 3 
+
+
+#  Question 9.1. 
+
+#  1. What is the sample average of the change in score between the patients
+#  rating before the application of the device and the rating after the application?
+```{r }
+head(magnets)
+
+mean(magnets$change)
+```
+
+#  2. Is the variable active a factor or a numeric variable?
+#  11Vallbona, Carlos, Carlton F. Hazlewood, and Gabor Jurida. (1997). Response of pain to
+#  static magnetic elds in postpolio patients: A double-blind pilot study. Archives of Physical
+#  and Rehabilitation Medicine 78(11): 1200-1203.
+
+it is a factor
+
+# 9.5. SOLVED EXERCISES
+#  153
+#  3. Compute the average value of the variable change for the patients that
+#  received and active magnet and average value for those that received an
+#  inactive placebo. (Hint: Notice that the rst 29 patients received an active
+#  magnet and the last 21 patients received an inactive placebo. The sub
+# sequence of the rst 29 values of the given variables can be obtained via
+#  the expression change[1:29] and the last 21 vales are obtained via the
+#  expression change[30:50] .)
+
+
+
+#  4. Compute the sample standard deviation of the variable change for the
+#  patients that received and active magnet and the sample standard devia
+# tion for those that received an inactive placebo.
+#  5. Produce a boxplot of the variable change for the patients that received
+#  and active magnet and for patients that received an inactive placebo.
+#  What is the number of outliers in each subsequence?
+
+
+
+
+# Question 10.1.
+ In Subsection 10.3.2 we compare the average against the mid
+range as estimators of the expectation of the measurement. The goal of this
+ exercise is to repeat the analysis, but this time compare the average to the
+ median as estimators of the expectation in symmetric distributions.
+ 1. Simulate the sampling distribution of average and the median of a sample
+ of size n = 100 from the Normal(32) distribution. Compute the expec
+tation and the variance of the sample average and of the sample median.
+ Which of the two estimators has a smaller mean square error?
+ 2. Simulate the sampling distribution of average and the median of a sample
+ of size n = 100 from the Uniform(0555) distribution. Compute the
+ expectation and the variance of the sample average and of the sample
+ median. Which of the two estimators has a smaller mean square error?
+
+
+
+
+
+
+# Question 10.2. 
+The goal in this exercise is to assess estimation of a proportion
+ in a population on the basis of the proportion in the sample.
+ The le pop2.csv was introduced in Exercise 7.1 of Chapter 7. This le
+ contains information associated to the blood pressure of an imaginary popu
+lation of size 100,000. The le can be found on the internet (http://pluto.
+ huji.ac.il/~msby/StatThink/Datasets/pop2.csv). One of the variables in
+ the le is a factor by the name group that identi es levels of blood pressure.
+ The levels of this variable are HIGH , LOW , and NORMAL .
+ The le ex2.csv contains a sample of size n = 150 taken from the given
+ population. This le can also be found on the internet (http://pluto.huji.
+ ac.il/~msby/StatThink/Datasets/ex2.csv). It contains the same variables
+ as in the le pop2.csv . The le ex2.csv corresponds in this exercise to
+ the observed sample and the le pop2.csv corresponds to the unobserved
+ population.
+ Download both les to your computer and answer the following questions:
+ 1. Compute the proportion in the sample of those with a high level of blood
+ pressure16.
+ 2. Compute the proportion in the population of those with a high level of
+ blood pressure
+ 3. Simulate the sampling distribution of the sample proportion and compute
+ its expectation.
+ 4. Compute the variance of the sample proportion.
+ 5. It is proposed in Section 10.5 that the variance of the sample proportion
+ is Var( P) = p(1 p) n, where p is the probability of the event (having a
+ high blood pressure in our case) and n is the sample size (n = 150 in our
+ case). Examine this proposal in the current setting.
+
+
+ ```{r exercise10.2}
+ex2 <- read.csv(ex2.csv)
+
+
+
+
+
+
+
+
+
+
+## Day 4
+
+# Questions 12.1. 
+
+Consider a medical condition that does not have a standard 
+treatment. The recommended design of a clinical trial for a new treatment
+ to such condition involves using a placebo treatment as a control. A placebo
+ treatment is a treatment that externally looks identical to the actual treatment
+ but, in reality, it does not have the active ingredients. The reason for using
+ placebo for control is the placebo effect . Patients tent to react to the fact that
+ they are being treated regardless of the actual bene cial e ect of the treatment.
+ As an example, consider the trial for testing magnets as a treatment for pain
+ that was described in Question 9.1. The patients that where randomly assigned
+ to the control (the last 21 observations in the le magnets.csv ) were treated
+ with devises that looked like magnets but actually were not. The goal in this
+ exercise is to test for the presence of a placebo e ect in the case study Magnets
+ and Pain Relief of Question 9.1 using the data in the le magnets.csv .
+ 
+ 
+ 1. Let X be the measurement of change, the difference between the score of
+ pain before the treatment and the score after the treatment, for patients
+ that were treated with the inactive placebo. Express, in terms of the
+ expected value of X, the null hypothesis and the alternative hypothesis
+ for a statistical test to determine the presence of a placebo e ect. The null
+ hypothesis should re ect the situation that the placebo e ect is absent.
+
+
+ 2. Identify the observations that can be used in order to test the hypotheses.
+
+
+ 3. Carry out the test and report your conclusion. (Use a signi cance level of
+ 5%.)
+
+
+
+
+
+
+
+
+
+ ```{r day4  }
+
+magnets <- read.csv('magnets.csv')
+str(magnets)
+summary(magnets)
+
+
+
+
+
+
+ ```
