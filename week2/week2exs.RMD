@@ -59,10 +59,20 @@ it is a factor
 range as estimators of the expectation of the measurement. The goal of this
  exercise is to repeat the analysis, but this time compare the average to the
  median as estimators of the expectation in symmetric distributions.
+
  1. Simulate the sampling distribution of average and the median of a sample
- of size n = 100 from the Normal(32) distribution. Compute the expec
+ of size n = 100 from the Normal(3,2) distribution. Compute the expec
 tation and the variance of the sample average and of the sample median.
  Which of the two estimators has a smaller mean square error?
+```{r }
+
+pnorm(100,3,2)
+
+
+
+
+```
+
  2. Simulate the sampling distribution of average and the median of a sample
  of size n = 100 from the Uniform(0555) distribution. Compute the
  expectation and the variance of the sample average and of the sample
@@ -102,15 +112,25 @@ lation of size 100,000. The le can be found on the internet (http://pluto.
  case). Examine this proposal in the current setting.
 
 
- ```{r exercise10.2}
-ex2 <- read.csv(ex2.csv)
+```{r exercise10.2}
+
+pop2 <- read.csv("pop2.csv")
+str(pop2)
+
+ex2 <- read.csv("ex2.csv")
+summary(ex2)
+str(ex2)
+#ex2.csv contains a sample of size n = 150 taken from the given population of pop2 100,000
 
 
+#1
+sum(ex2$group == "HIGH") / nrow(ex2)
+#2 
+mean(pop2$group == "HIGH")
+#3
 
 
-
-
-
+```
 
 
 

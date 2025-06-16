@@ -210,5 +210,6 @@ trips %>%
     group_by(hour,weekday)%>%
     summarise(average = mean(trip_count),
         standarddev = sd(trip_count),
-        .groups = "drop")
-
+        .groups = "drop") %>%
+        ggplot(aes(hour, average)) + geom_line(color = "red")+ geom_ribbon(aes(ymin = average - standarddev, ymax = average + standarddev), alpha = 0.25)+
+        facet_wrap(~weekday)
