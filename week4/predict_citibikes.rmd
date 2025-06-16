@@ -148,7 +148,7 @@ for (f in 1:num_folds) {
   train_data <- filter(trips_per_day, fold != f)
   validate_data <- filter(trips_per_day, fold == f)
   # Fit model with selected features
-  summary(model <- lm(num_trips ~ prcp_high + avg_temp + day_type + season*prcp, data = train_data))
+  model <- lm(num_trips ~ prcp_high + avg_temp + day_type + season*prcp, data = train_data)
   # RMSE on training data
   train_pred <- predict(model, train_data)
   train_err[f] <- sqrt(mean((train_pred - train_data$num_trips)^2))
@@ -209,5 +209,11 @@ This scatter plot shows the relationship between the actual number of trips and 
 ``` {r }
 
 save(model, file = "model.RData")
+
+tmp_env <- new.env()
+load("model.RData", envir = tmp_env)
+ls(tmp_env)  # Lists all objects saved in the file
+
+print(tmp_env$model)
 
 ```
