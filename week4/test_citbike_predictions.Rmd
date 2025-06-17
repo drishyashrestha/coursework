@@ -1,0 +1,77 @@
+---
+title: "Test Citibike Prediction"
+author: "Drishya Shrestha"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+
+
+##  Setup (loading packages and data)
+
+
+```{r setup}
+library(tidyverse)
+library(scales)
+library(modelr)
+library(readr)
+theme_set(theme_bw())
+```
+
+
+
+## Loading data
+
+
+```{r pressure, echo=FALSE}
+trips_per_day_2015 <- read_tsv("trips_per_day_2015.tsv")
+weather_2015 <- read_csv("weather_2015.csv")
+summary(weather_2015)
+str(weather_2015)
+summary(trips_per_day_2015)
+str(trips_per_day_2015)
+
+tmp_env <- new.env()
+load("model.RData", envir = tmp_env)
+model <- tmp_env$model 
+summary(model)
+formula(model)
+
+
+
+str(trips_per_day_2015)
+head(trips_per_day_2015)
+head(weather_2015)
+joined_df <- inner_join(weather_2015, trips_per_day_2015, by =  c("DATE" = "ymd"))
+head(joined_df)
+names(joined_df) <- tolower(names(joined_df))
+
+joined_df<-mutate(joined_df, day_name = weekdays(date), snow_high = ifelse(snwd>5, 1,0),avg_temp = (tmin/10 + tmax/10) / 2, prcp_high = ifelse(prcp > 0.15, 1, 0),
+  month = month(date),
+    season = case_when(
+      month %in% c(12, 1, 2)  ~ "Winter",
+      month %in% c(3, 4, 5)   ~ "Spring",
+      month %in% c(6, 7, 8)   ~ "Summer",
+      month %in% c(9, 10, 11) ~ "Fall"
+    )
+)
+joined_df<-mutate(joined_df, day_type = ifelse(day_name %in% c("Saturday", "Sunday"), 1, 0)) %>% select(- c(day_name,tavg))
+str(joined_df)
+view(joined_df)
+##Testing it
+actual <- joined_df$num_trips
+predicted <- predict(model, newdata = joined_df)
+
+rmse <- sqrt(mean((actual - predicted)^2))
+rmse
+
+#Checking and debugging the new data
+
+
+colSums(is.na(joined_df))
+
+#Features used check
+attr(model$terms, "term.labels")
+# Check types
+str(joined_df)
+```
